@@ -22,6 +22,7 @@ namespace KST
                 if (args.Length == 2 && args[0].ToLower() == "name-sorter" && args[1].ToLower() == "./unsorted-names-list.txt")
                 {
                     string fileSource = Path.GetFileName(args[1]);
+                    var test = File.Exists(fileSource);
                     INameManager nameManager = new NameManager();
                     nameManager.SortAllNames(fileSource);
                 }
