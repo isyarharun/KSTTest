@@ -1,4 +1,6 @@
-﻿using KST.Repository.Interfaces;
+﻿using KST.Common.Implementations;
+using KST.Common.Interfaces;
+using KST.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +13,7 @@ namespace KST.Repository.Implementation
     public class FileRepository : IFileRepository
     {
         private string _fileSource;
+
         public FileRepository(string fileSource)
         {
             _fileSource = fileSource;
@@ -28,8 +31,16 @@ namespace KST.Repository.Implementation
 
         public string[] ReadAll()
         {
-            var unsortedNames = File.ReadAllLines(_fileSource);
-            return unsortedNames;
+            if (File.Exists(_fileSource))
+            {
+                var unsortedNames = File.ReadAllLines(_fileSource);
+                return unsortedNames;
+            }
+            else
+            {
+                throw new Exception("File not exist");
+            }
+
         }
     }
 }

@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KST.Common\KST.Common.csproj">
+      <Project>{218550ED-D02D-4CB3-9DD2-D2B3538E1865}</Project>
+      <Name>KST.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KST.Manager\KST.Manager.csproj">
       <Project>{F54DCF79-EF03-4469-9BD2-6E0902BD9B9D}</Project>
       <Name>KST.Manager</Name>

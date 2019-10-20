@@ -1,4 +1,6 @@
-﻿using KST.Manager.Implementation;
+﻿using KST.Common.Implementations;
+using KST.Common.Interfaces;
+using KST.Manager.Implementation;
 using KST.Manager.Interfaces;
 using KST.Model;
 using System;
@@ -14,19 +16,26 @@ namespace KST
     {
         static void Main(string[] args)
         {
-            if (args.Length == 2 && args[0].ToLower() == "name-sorter" && args[1].ToLower() == "./unsorted-names-list.txt")
+            ILogger _logger = new ConsoleLogger();
+            try
             {
-                string fileSource = "unsorted-names-list.txt";
-                INameManager nameManager = new NameManager();
-                nameManager.SortAllNames(fileSource);
-                Console.ReadLine();
+                if (args.Length == 2 && args[0].ToLower() == "name-sorter" && args[1].ToLower() == "./unsorted-names-list.txt")
+                {
+                    string fileSource = Path.GetFileName(args[1]);
+                    INameManager nameManager = new NameManager();
+                    nameManager.SortAllNames(fileSource);
+                }
+                else
+                {
+                    Console.WriteLine("please provide a valid input");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("please provide a valid input");
-                Console.ReadLine();
+                _logger.Log(ex.Message);
             }
 
+            Console.ReadLine();
         }
     }
 }
