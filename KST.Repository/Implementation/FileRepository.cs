@@ -16,6 +16,10 @@ namespace KST.Repository.Implementation
 
         public FileRepository(string fileSource)
         {
+            if (!File.Exists(_fileSource))
+            {
+                throw new Exception("File not exist");
+            }
             _fileSource = fileSource;
         }
 
@@ -31,15 +35,9 @@ namespace KST.Repository.Implementation
 
         public string[] ReadAll()
         {
-            if (File.Exists(_fileSource))
-            {
-                var unsortedNames = File.ReadAllLines(_fileSource);
-                return unsortedNames;
-            }
-            else
-            {
-                throw new Exception("File not exist");
-            }
+            var unsortedNames = File.ReadAllLines(_fileSource);
+            return unsortedNames;
+
 
         }
     }
